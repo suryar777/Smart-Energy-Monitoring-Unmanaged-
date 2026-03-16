@@ -1,0 +1,61 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Energy Reading',
+    typeNamePlural: 'Energy Readings',
+    title: { type: #STANDARD, label: 'Reading No', value: 'ReadingNo' }
+  }
+}
+annotate entity ZCC_EMI_22IT115 with
+{
+  @UI.facet: [
+    {
+      id: 'ReadingDetails',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Reading Details',
+      position: 10
+    }
+  ]
+
+  @UI: { lineItem: [{ position: 10, label: 'Meter ID' }],
+         identification: [{ position: 10, label: 'Meter ID' }] }
+  MeterId;
+
+  @UI: { lineItem: [{ position: 20, label: 'Reading No' }],
+         identification: [{ position: 20, label: 'Reading No' }] }
+  ReadingNo;
+
+  @UI: { lineItem: [{ position: 30, label: 'Date' }],
+         identification: [{ position: 30, label: 'Date' }] }
+  ReadingDate;
+
+  @UI: { lineItem: [{ position: 40, label: 'Time' }],
+         identification: [{ position: 40, label: 'Time' }] }
+  ReadingTime;
+
+  @UI: { lineItem: [{ position: 50, label: 'Energy (kWh)' }],
+         identification: [{ position: 50, label: 'Energy (kWh)' }] }
+  EnergyValue;
+
+  @UI: { lineItem: [{ position: 60, label: 'Unit' }],
+         identification: [{ position: 60, label: 'Unit' }] }
+  EnergyUnit;
+
+  @UI: { lineItem: [{ position: 70, label: 'Voltage (V)' }],
+         identification: [{ position: 70, label: 'Voltage (V)' }] }
+  Voltage;
+
+  @UI: { lineItem: [{ position: 80, label: 'Current (A)' }],
+         identification: [{ position: 80, label: 'Current (A)' }] }
+  AmpCurrent;
+
+  @UI: { lineItem: [{ position: 90, label: 'Power Factor' }],
+         identification: [{ position: 90, label: 'Power Factor' }] }
+  PowerFactor;
+
+  @UI.hidden: true LocalCreatedBy;
+  @UI.hidden: true LocalCreatedAt;
+  @UI.hidden: true LocalLastChangedBy;
+  @UI.hidden: true LocalLastChangedAt;
+}

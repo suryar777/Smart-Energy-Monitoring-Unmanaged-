@@ -1,0 +1,5 @@
+@EndUserText.label: 'service definition'
+define service ZSD_EM_22IT115 {
+  expose ZCC_EMH_22IT115;
+  expose ZCC_EMI_22IT115;
+}

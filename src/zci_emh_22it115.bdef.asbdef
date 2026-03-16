@@ -1,0 +1,76 @@
+unmanaged implementation in class zcb_ems_22it115 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZCI_EMH_22IT115 alias EnergyMeterHdr
+  implementation in class zcb_emh_22it115 unique
+  draft table zem_hdr_d_115
+  lock master total etag LocalLastChangedAt
+  authorization master ( instance )
+  etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  draft action Activate optimized;
+  draft action Discard;
+
+  field ( mandatory : create ) MeterId;
+  field ( readonly : update )  MeterId;
+  field ( readonly )           LocalLastChangedAt;
+
+  association _EnergyReading { create; with draft; }
+
+  mapping for zem_hdr_22it115
+  {
+    MeterId            = meterid;
+    MeterDesc          = meterdesc;
+    Location           = location;
+    MeterType          = metertype;
+    InstallDate        = installdate;
+    MeterStatus        = status;
+    TotalCost          = totalcost;
+    Currency           = currency;
+    LocalCreatedBy     = local_created_by;
+    LocalCreatedAt     = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZCI_EMI_22IT115 alias EnergyMeterItm
+  implementation in class zcb_emi_22it115 unique
+  draft table zem_itm_d_115
+  lock dependent by _EnergyHeader
+  authorization dependent by _EnergyHeader
+  etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly : update, mandatory : create ) ReadingNo;
+  field ( readonly ) MeterId;
+
+  association _EnergyHeader { with draft; }
+
+  mapping for zem_itm_22it115
+  {
+    MeterId            = meterid;
+    ReadingNo          = readingno;
+    ReadingDate        = readingdate;
+    ReadingTime        = readingtime;
+    EnergyValue        = energyvalue;
+    EnergyUnit         = energyunit;
+    Voltage            = voltage;
+    AmpCurrent         = ampcurrent;
+    PowerFactor        = powerfactor;
+    LocalCreatedBy     = local_created_by;
+    LocalCreatedAt     = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

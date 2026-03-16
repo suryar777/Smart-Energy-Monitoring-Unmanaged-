@@ -1,0 +1,70 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Energy Meter',
+    typeNamePlural: 'Energy Meters',
+    title: { type: #STANDARD, label: 'Meter ID', value: 'MeterId' }
+  }
+}
+annotate entity ZCC_EMH_22IT115 with
+{
+  @UI.facet: [
+    {
+      id: 'MeterHeader',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Meter Details',
+      position: 10
+    },
+    {
+      id: 'EnergyReadings',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Energy Readings',
+      position: 20,
+      targetElement: '_EnergyReading'
+    }
+  ]
+
+  @UI: { lineItem: [{ position: 10, label: 'Meter ID' }],
+         identification: [{ position: 10, label: 'Meter ID' }],
+         selectionField: [{ position: 10 }] }
+  MeterId;
+
+  @UI: { lineItem: [{ position: 20, label: 'Description' }],
+         identification: [{ position: 20, label: 'Description' }] }
+  MeterDesc;
+
+  @UI: { lineItem: [{ position: 30, label: 'Location' }],
+         identification: [{ position: 30, label: 'Location' }],
+         selectionField: [{ position: 30 }] }
+  Location;
+
+  @UI: { lineItem: [{ position: 40, label: 'Meter Type' }],
+         identification: [{ position: 40, label: 'Meter Type' }],
+         selectionField: [{ position: 40 }] }
+  MeterType;
+
+  @UI: { lineItem: [{ position: 50, label: 'Install Date' }],
+         identification: [{ position: 50, label: 'Install Date' }] }
+  InstallDate;
+
+  @UI: { lineItem: [{ position: 60, label: 'Status' }],
+         identification: [{ position: 60, label: 'Status' }],
+         selectionField: [{ position: 60 }] }
+  MeterStatus;
+
+  @UI: { lineItem: [{ position: 70, label: 'Total Cost' }],
+         identification: [{ position: 70, label: 'Total Cost' }] }
+  TotalCost;
+
+  @UI: { lineItem: [{ position: 80, label: 'Currency' }],
+         identification: [{ position: 80, label: 'Currency' }] }
+  Currency;
+
+  @UI: { identification: [{ position: 90, label: 'Created By' }] }
+  LocalCreatedBy;
+
+  @UI: { identification: [{ position: 100, label: 'Created At' }] }
+  LocalCreatedAt;
+}
